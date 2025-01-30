@@ -106,10 +106,16 @@ For any questions or issues, please contact nihalsinghverma@hotmail.com or open 
 
 ### **Example File Structure**
 
-automation_toolkit/
+script/
+
 ├── automation_toolkit.py
+
 ├── README.md
+
 ├── drivers/
+
 │ └── msedgedriver.exe
+
 └── config/
+
 └── pyconfig.ini
