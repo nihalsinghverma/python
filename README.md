@@ -1,67 +1,73 @@
-# Python Automation and Database Utility
+# Automation Toolkit
 
-## Overview
-This Python script automates package installation, manages configuration files for storing encrypted passwords, interacts with databases (Oracle, SQL Server, DP3), formats SQL queries, generates Excel reports, and automates web interactions using Selenium with Microsoft Edge.
+This Python script is a multi-purpose automation tool designed to handle various tasks, including package installation, configuration management, database operations, Excel file creation, and web automation using Selenium.
+
+---
 
 ## Features
-- **Automatic Package Installation**: Ensures required Python packages are installed.
-- **Configuration File Handling**: Creates and manages `config.ini` for storing encrypted passwords.
-- **Database Interaction**:
-  - Fetch records from SQL Server, Oracle, or DP3.
-  - Use `sqlalchemy`, `cx_Oracle`, and `pyodbc` for connectivity.
-- **SQL Query Formatting**: Uses `sql_formatter` to format SQL queries.
-- **Excel Report Generation**: Saves multiple pandas DataFrames into an Excel file.
-- **Web Automation**:
-  - Uses Selenium with Microsoft Edge.
-  - Opens URLs, finds elements, enters text, clicks elements, and extracts data.
+
+- **Package Installation**: Automatically installs required Python packages if they are missing.
+- **Configuration Management**: Manages passwords and configurations in a secure and encrypted manner.
+- **Database Operations**: Fetches records from databases (SSMS, Oracle, DP3).
+- **Excel File Creation**: Generates Excel files from a list of Pandas DataFrames.
+- **Web Automation**: Uses Selenium for browser automation tasks like opening URLs, clicking elements, and entering text.
+
+---
+
+## Prerequisites
+
+Before running the script, ensure you have the following installed:
+
+- Python 3.8 or higher
+- Required Python packages (listed in the script)
+- Microsoft Edge WebDriver (for Selenium automation)
+
+---
 
 ## Installation
-Ensure you have Python installed. Run the script to install missing dependencies automatically.
 
-Alternatively, manually install dependencies using:
-```bash
-pip install pandas numpy matplotlib seaborn scipy statsmodels scikit-learn cx_Oracle pyodbc sqlalchemy openpyxl sql_formatter selenium
-```
+1. Clone this repository or download the script.
+2. Install the required Python packages by running the script. It will automatically install any missing packages.
+
+---
 
 ## Usage
-### 1. Running the Script
-Execute the script to ensure dependencies are installed and configuration is set up.
-```bash
-python script.py
+
+### 1. Package Installation
+The script will automatically check for and install missing packages when run.
+
+### 2. Configuration Management
+Use the `ConfigManager` class to manage passwords and configurations:
+```python
+config_manager = ConfigManager("path/to/config.ini")
+config_manager.add_password("account1", "password123")
+print(config_manager.read_password("account1"))
 ```
 
-### 2. Database Operations
+### 3. Database Operations
+Fetch records from a database:
 ```python
-query = "SELECT * FROM users"
-df = fetchRecords(query, "SSMS")
-print(df.head())
-```
-
-### 3. Password Management
-```python
-addPassword("account1", "mypassword")
-print(readPassword("account1"))
-updatePassword("account1", "newpassword")
-removePassword("account1")
+query = "SELECT * FROM your_table"
+df = fetch_records(query, "SSMS")
+print(df)
 ```
 
 ### 4. Generating Random Data and Excel Reports
+Create an Excel file from a list of DataFrames:
 ```python
-df1 = randomData(10)
-df2 = randomData(20)
-createExcel([df1, df2], "output.xlsx")
+df1 = random_data(10)
+df2 = random_data(20)
+create_excel([df1, df2], "output.xlsx")
 ```
 
 ### 5. Selenium Web Automation
+Use the WebDriverManager class for browser automation:
 ```python
-driver = init_driver()
-open_url(driver, "https://www.google.com")
-enter_text(driver, By.NAME, "q", "Selenium with Edge")
-search_box = wait_for_clickable(driver, By.NAME, "q")
-search_box.send_keys(Keys.RETURN)
-close_browser(driver)
+driver_manager = WebDriverManager()
+driver = driver_manager.init_driver()
+driver_manager.open_url("https://www.google.com")
+driver_manager.close_driver()
 ```
-
 ## Configuration
 - The script creates a `pyconfig.ini` file to store encrypted passwords.
 - Modify `configFileInfo` variable to change the file path.
@@ -77,5 +83,33 @@ close_browser(driver)
 ## License
 This project is open-source and can be modified as needed.
 
+## Script Structure
+**ConfigManager**: Handles configuration file operations.
+
+**WebDriverManager**: Manages Selenium WebDriver operations.
+
+**fetch_records**: Fetches data from databases.
+
+**create_excel**: Creates Excel files from DataFrames.
+
+**random_data**: Generates random data for testing.
+
 ## Author
 - Nihal Singh Verma
+- 2023-04-27
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request for any improvements.
+
+## Support
+For any questions or issues, please contact nihalsinghverma@hotmail.com or open an issue in the repository.
+
+### **Example File Structure**
+
+automation_toolkit/
+├── automation_toolkit.py
+├── README.md
+├── drivers/
+│ └── msedgedriver.exe
+└── config/
+└── pyconfig.ini
