@@ -1,5 +1,5 @@
 """
-Script Name: Data Processing and Automation Script
+Script Name: Automation & Data Processing Toolkit
 Author: Nihal Singh Verma
 Date Created: 2023-04-27
 Description: This script automates various tasks such as package installation, configuration management,
